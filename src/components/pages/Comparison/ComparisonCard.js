@@ -21,6 +21,7 @@ export default class ComparisonCard extends Component {
   toggleModal = () => {
     this.setState({ visible: !this.state.visible });
   };
+
   render() {
     const { city } = this.props;
     const { visible } = this.state;
@@ -97,10 +98,14 @@ export default class ComparisonCard extends Component {
                 />
                 <div className="metrics-child">
                   <p>
-                    <b>Current Weather:</b>
+                    <b>Temperature Range:</b>
                   </p>
-                  {city.currentWeather ? (
-                    <p>{`${Math.round(city.currentWeather.current.temp)}°F`}</p>
+                  {city.weather ? (
+                    <p>{`${Math.round(
+                      city.weather.winter_mintempF_mean
+                    )}°F - ${Math.round(
+                      city.weather.summer_maxtempF_mean
+                    )}°F`}</p>
                   ) : (
                     <LoadingSkeleton />
                   )}
