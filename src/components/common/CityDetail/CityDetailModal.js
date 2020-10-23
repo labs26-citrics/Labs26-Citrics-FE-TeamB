@@ -1,8 +1,9 @@
 import React from "react";
 import { Button, Modal } from "antd";
-import { CityDetailPage } from "../pages/CityDetail";
+import CityDetailPane from "./CityDetailContainer";
 
-const ModalComponent = ({ visible, toggleModal, city = {} }) => {
+// A controlled Modal component to display CityDetails in a pleasing format
+const CityDetailModal = ({ visible, toggleModal, city = {} }) => {
   return (
     <Modal
       centered
@@ -17,9 +18,9 @@ const ModalComponent = ({ visible, toggleModal, city = {} }) => {
         </Button>
       ]}
     >
-      <CityDetailPage city={city} />
+      <CityDetailPane city={city} insideModal={true} />
     </Modal>
   );
 };
 
-export default ModalComponent;
+export default CityDetailModal;

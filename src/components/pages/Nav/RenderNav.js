@@ -10,9 +10,9 @@ import { SelectedCities } from "../SelectedCities/";
 
 //Configuration
 // This defines the width of the drawer *and* how far to translate the floating button
-import drawerWidth from "./drawerWidth";
+import { drawerWidth } from "../../common/constants";
 
-export default function RenderNav({ toggleDrawer, isOpen, closed }) {
+export default function RenderNav({ toggleDrawer, isOpen, isMobile }) {
   const buttonTransform = isOpen ? `translate(${drawerWidth}px,0px)` : "";
 
   return (
@@ -32,12 +32,12 @@ export default function RenderNav({ toggleDrawer, isOpen, closed }) {
         closable={false}
         onClose={toggleDrawer}
         visible={isOpen}
-        mask={closed ?? false}
+        // Apply a mask if we are in mobile view
+        mask={isMobile}
         width={drawerWidth}
       >
         <div className="component-container">
           <SearchBar />
-          {/* TODO: remove these and clean up formatting of this element */}
           <br />
           <br />
           <br />

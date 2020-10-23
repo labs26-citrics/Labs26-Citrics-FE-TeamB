@@ -1,18 +1,11 @@
 import React, { Component } from "react";
-import ModalComponent from "../../common/Modal";
+import { CityDetailModal } from "../../common/CityDetail/";
 import { Divider, Skeleton } from "antd";
 //icons
 import weather from "../../../styles/icons/weather-48.png";
 import population from "../../../styles/icons/pop-48.png";
 import pricing from "../../../styles/icons/pricing-48.png";
-
-function LoadingSkeleton() {
-  return (
-    <div style={{ minWidth: "150px" }}>
-      <Skeleton active title={false} paragraph={{ rows: 1 }} />
-    </div>
-  );
-}
+import { LoadingSkeleton } from "../../common";
 
 export default class ComparisonCard extends Component {
   state = {
@@ -28,6 +21,7 @@ export default class ComparisonCard extends Component {
     return (
       <div className="card">
         <div className="comparison-card" data-testid="city-cards">
+          {/* Header Image */}
           {city.image ? (
             <div
               className="custom-image"
@@ -43,6 +37,7 @@ export default class ComparisonCard extends Component {
           )}
           <div className="basic-card-info">
             <div className="card-metrics">
+              {/* Name and State */}
               {city.name ? (
                 <h3 className="city-name">
                   {city.name}, {city.state}
@@ -55,6 +50,7 @@ export default class ComparisonCard extends Component {
                 />
               )}
               <Divider className="divider" />
+              {/* Population info */}
               <div className="metrics-parent">
                 <img
                   className="metrics-icon"
@@ -68,10 +64,11 @@ export default class ComparisonCard extends Component {
                   {city.population ? (
                     <p>{city.population.data.total_pop.toLocaleString()}</p>
                   ) : (
-                    <LoadingSkeleton />
+                    <LoadingSkeleton minWidth="150px" rows={1} />
                   )}
                 </div>
               </div>
+              {/* Rent info */}
               <div className="metrics-parent">
                 <img
                   className="metrics-icon"
@@ -85,10 +82,11 @@ export default class ComparisonCard extends Component {
                   {city.rent ? (
                     <p>{`${"$" + city.rent["1br"]}/month (1BR)`}</p>
                   ) : (
-                    <LoadingSkeleton />
+                    <LoadingSkeleton minWidth="150px" rows={1} />
                   )}
                 </div>
               </div>
+              {/* Current weather */}
               <div className="metrics-parent">
                 <img
                   className="metrics-icon"
@@ -102,11 +100,12 @@ export default class ComparisonCard extends Component {
                   {city.currentWeather ? (
                     <p>{`${Math.round(city.currentWeather.current.temp)}°F`}</p>
                   ) : (
-                    <LoadingSkeleton />
+                    <LoadingSkeleton minWidth="150px" rows={1} />
                   )}
                 </div>
               </div>
             </div>
+            {/* Modal and toggle button */}
             <div className="btn-container">
               <button
                 className="more-info-btn"
@@ -119,7 +118,7 @@ export default class ComparisonCard extends Component {
             </div>
           </div>
         </div>
-        <ModalComponent
+        <CityDetailModal
           visible={visible}
           toggleModal={toggleModal}
           city={this.props.city}

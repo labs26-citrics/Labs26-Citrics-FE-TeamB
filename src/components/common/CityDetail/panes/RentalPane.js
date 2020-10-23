@@ -1,8 +1,8 @@
 import React from "react";
 import { Tabs } from "antd";
-import { lineGraph } from "../../../common/Graphs/graphType";
+import { lineGraph } from "../../Graphs/graphType";
 import Plot from "react-plotly.js";
-import LoadingSkeleton from "./LoadingSkeleton";
+import LoadingSkeleton from "../../LoadingSkeleton";
 //icon
 import rentIcon from "../../../../styles/icons/rent-96.png";
 
@@ -12,27 +12,6 @@ export default function RentalPane({ rent, predictions }) {
   // it also matches the keys in rent (although they're all lowercase in rent)
   const aptTypes = ["Studio", "1BR", "2BR", "3BR", "4BR"];
 
-  // Make a color-coded price change display
-  // const PriceDisplay = ({ change }) => {
-  //   change = Math.round(change * 100);
-  //   let indicator = "";
-  //   if (change < 0) {
-  //     indicator = " down";
-  //     change += "%";
-  //   } else {
-  //     if (change > 0) {
-  //       indicator = " up";
-  //     }
-  //     change = "+" + change + "%";
-  //   }
-  // return (
-  //   <p>
-  //     Trend:
-  //     <span className={"rent-percent-change" + indicator}>{change}</span>
-  //   </p>
-  // );
-  // };
-  // Takes the roomtype from tab pan loop and generates a graph for each room
   const renderPrediction = roomType => {
     const { dataPlot, layout } = lineGraph({
       name: "",
@@ -67,21 +46,18 @@ export default function RentalPane({ rent, predictions }) {
 
         <div className="housing-pane">
           {predictions && rent ? (
-            <>
-              {/* This JSX fragment contains everything shown when not loading */}
-              <Tabs defaultActiveKey="1" className="metrics-container rental">
-                {aptTypes.map((name, idx) => (
-                  <TabPane key={idx} tab={name} className="rental-price-tab">
-                    <div className="rental-data-container">
-                      <div>${rent[name.toLowerCase()]}/month</div>
-                      <div>{renderPrediction(name)}</div>
-                    </div>
-                  </TabPane>
-                ))}
-              </Tabs>
-            </>
+            <Tabs defaultActiveKey="1" className="metrics-container rental">
+              {aptTypes.map((name, idx) => (
+                <TabPane key={idx} tab={name} className="rental-price-tab">
+                  <div className="rental-data-container">
+                    <div>${rent[name.toLowerCase()]}/month</div>
+                    <div>{renderPrediction(name)}</div>
+                  </div>
+                </TabPane>
+              ))}
+            </Tabs>
           ) : (
-            <LoadingSkeleton />
+            <LoadingSkeleton minWidth="400px" />
           )}
         </div>
       </div>
