@@ -22,6 +22,8 @@ You can find the deployed project at [Citrics](https://citrics.netlify.app/).
 - User can search for a city by Zip code
 - Styling: model the home page to be more useful. Instead of side bar and 'Get Started' button, incorporate the search bar like this [similar app](https://www.areavibes.com/)
 
+### [Demo Video](https://youtu.be/iQONIeMR7xM)
+
 ### Front end deployed to `Netlify`
 
 ### [Backend](https://b-ds.citrics.dev) built using FastAPI:
