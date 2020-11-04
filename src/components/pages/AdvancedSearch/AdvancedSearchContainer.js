@@ -72,7 +72,7 @@ export default function AdvancedSearchContainer(props) {
 
     const queryString = createQueryString(convertLocalPrefsToBackendPrefs());
     axios
-      .get("https://b-ds.citrics.dev/cities" + queryString)
+      .get("https://citrics-ds.herokuapp.com/cities" + queryString)
       .then(r => r?.data?.cities)
       .then(setSearchResults)
       .then(() => {

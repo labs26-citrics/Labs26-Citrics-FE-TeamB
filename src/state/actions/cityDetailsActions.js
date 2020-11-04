@@ -45,7 +45,7 @@ const retrieveNameState = async ({ id, name, state }) => {
   if (name && state) return { name, state };
   // Get name/state info from the city list endpoint if needed
   await axios
-    .get("https://b-ds.citrics.dev/cities")
+    .get("https://citrics-ds.herokuapp.com/cities")
     .then(r => r.data.cities)
     .then(cityList => {
       const city = cityList.find(
@@ -65,7 +65,7 @@ const retrieveNameState = async ({ id, name, state }) => {
 // Retrieve metrics from our backend and update Redux accordingly
 const updateMetrics = async ({ id }, dispatch) => {
   const { data, viz } = await axios
-    .get(`https://b-ds.citrics.dev/city_metrics/${id}`)
+    .get(`https://citrics-ds.herokuapp.com/city_metrics/${id}`)
     .then(r => r?.data);
 
   // Request job data after getting other metrics to improve performance
@@ -86,7 +86,7 @@ const updateMetrics = async ({ id }, dispatch) => {
 // Retrieve job data separately, as it's slow
 const updateJobs = ({ id }, dispatch) => {
   axios
-    .get(`https://b-ds.citrics.dev/jobs/${id}`)
+    .get(`https://citrics-ds.herokuapp.com/jobs/${id}`)
     .then(r => r?.data)
     .then(jobs => dispatch(updateCityDetails(id, { jobs })))
     .catch(console.error);
@@ -95,7 +95,7 @@ const updateJobs = ({ id }, dispatch) => {
 // Retrieves rental prediction data
 const updateRentalPredictions = ({ id }, dispatch) => {
   axios
-    .get(`https://b-ds.citrics.dev/predict_rental/${id}`)
+    .get(`https://citrics-ds.herokuapp.com/predict_rental/${id}`)
     .then(r => r?.data)
     .then(rentalPrediction =>
       dispatch(
@@ -106,7 +106,7 @@ const updateRentalPredictions = ({ id }, dispatch) => {
 };
 const updatePopulationPredictions = ({ id }, dispatch) => {
   axios
-    .get(`https://b-ds.citrics.dev/predict_pop/${id}`)
+    .get(`https://citrics-ds.herokuapp.com/predict_pop/${id}`)
     .then(r => r?.data)
     .then(popPrediction =>
       dispatch(updateCityDetails(id, { popPrediction: popPrediction.viz }))
