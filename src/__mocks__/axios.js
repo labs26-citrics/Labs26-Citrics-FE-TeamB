@@ -34,9 +34,9 @@ const cities = [
 export default {
   get: jest.fn().mockImplementation(url => {
     switch (url) {
-      case "https://b-ds.citrics.dev/cities/":
+      case "https://citrics-ds.herokuapp.com/cities/":
         return Promise.resolve({ data: { cities } });
-      case "https://b-ds.citrics.dev/cities":
+      case "https://citrics-ds.herokuapp.com/cities":
         return Promise.resolve({ data: { cities } });
       default:
         console.warn(
