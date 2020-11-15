@@ -26,7 +26,7 @@ You can find the deployed project at [Citrics](https://citrics.netlify.app/).
 
 ### Front end deployed to `Netlify`
 
-### [Backend](https://citrics-ds.herokuapp.com/) built using FastAPI:
+### [Backend](https://github.com/labs26-citrics/Labs26-Citrics-DS-TeamB) built using FastAPI:
 
 Our Data Science team collated a variety of metrics and created predictive models. See [their repo](https://github.com/labs26-citrics/Labs26-Citrics-DS-TeamB) for more information
 
